@@ -28,7 +28,7 @@ const EditProduct = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/product/${id}/`);
+        const response = await axios.get(`https://usdeshopbackeand-1.onrender.com/api/product/${id}/`);
         setProduct({
           name: response.data.name,
           description: response.data.description,
@@ -72,7 +72,7 @@ const EditProduct = () => {
     if (product.image3) formData.append('image3', product.image3);
 
     try {
-      await axios.put(`${process.env.REACT_APP_API_URL}/api/update-product/${id}/`, formData, {
+      await axios.put(`https://usdeshopbackeand-1.onrender.com/api/update-product/${id}/`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

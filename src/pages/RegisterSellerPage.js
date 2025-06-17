@@ -42,7 +42,6 @@ function RegisterSellerPage() {
       formData.append(key, form[key]);
     }
 
-  const baseUrl = process.env.REACT_APP_API_URL.replace(/\/$/, '');  // يزيل / إن وجدت
   fetch(`https://usdeshopbackeand-1.onrender.com/api/register-seller/`, {
   method: 'POST',
   body: formData,

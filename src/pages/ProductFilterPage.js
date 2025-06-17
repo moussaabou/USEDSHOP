@@ -15,7 +15,7 @@ const ProductFilterPage = () => {
   // جلب المنتجات مع الفلاتر
   useEffect(() => {
     setLoading(true);
-    let url = '${process.env.REACT_APP_API_URL}/api/filter-products/?';
+    let url = `https://usdeshopbackeand-1.onrender.com/api/filter-products/?`;
 
     if (category) url += `category=${encodeURIComponent(category)}&`;
     if (minPrice) url += `min_price=${minPrice}&`;

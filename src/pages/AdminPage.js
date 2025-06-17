@@ -18,7 +18,7 @@ function AdminPage() {
   const fetchSellers = () => {
     setLoading(true);
     setError(null); // إفراغ أي أخطاء سابقة
-    fetch('${process.env.REACT_APP_API_URL}/api/sellers/')
+    fetch(`https://usdeshopbackeand-1.onrender.com/api/sellers/`)
       .then(res => {
         if (!res.ok) throw new Error('فشل في جلب البائعين');
         return res.json();
@@ -35,7 +35,7 @@ function AdminPage() {
 
   const handleDelete = (sellerId) => {
     if (window.confirm('هل أنت متأكد من حذف هذا البائع وجميع منتجاته؟')) {
-      fetch(`http://localhost:8000/api/sellers/${sellerId}/`, {
+      fetch(`https://usdeshopbackeand-1.onrender.com/api/sellers/${sellerId}/`, {
         method: 'DELETE',
       })
       .then(res => {

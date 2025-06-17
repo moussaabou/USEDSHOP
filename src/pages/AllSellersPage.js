@@ -10,7 +10,7 @@ function AllSellersPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('${process.env.REACT_APP_API_URL}/api/sellers/')
+    fetch(`https://usdeshopbackeand-1.onrender.com/api/sellers/`)
       .then((res) => res.json())
       .then((data) => {
         setSellers(data);

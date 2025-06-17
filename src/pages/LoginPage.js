@@ -15,7 +15,7 @@ function LoginPage() {
     setLoading(true);
     setError('');
 
-    fetch('${process.env.REACT_APP_API_URL}/api/login/', {
+    fetch(`https://usdeshopbackeand-1.onrender.com/api/login/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

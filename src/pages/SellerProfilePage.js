@@ -21,7 +21,7 @@ function SellerProfile() {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/api/seller-profile/${sellerId}/`)
+    fetch(`https://usdeshopbackeand-1.onrender.com/api/seller-profile/${sellerId}/`)
       .then(res => res.json())
       .then(data => {
         setSellerData(prev => ({ ...prev, ...data }));
@@ -66,7 +66,7 @@ function SellerProfile() {
     if (selectedImage) formData.append('profile_picture', selectedImage);
     if (newPassword) formData.append('new_password', newPassword);
 
-    fetch(`${process.env.REACT_APP_API_URL}/api/seller-profile/${sellerId}/`, {
+    fetch(`https://usdeshopbackeand-1.onrender.com/api/seller-profile/${sellerId}/`, {
       method: 'POST',
       body: formData,
     })

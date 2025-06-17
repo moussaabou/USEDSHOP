@@ -19,7 +19,7 @@ function ProductDetails() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/product/${id}/`);
+        const response = await fetch(`https://usdeshopbackeand-1.onrender.com/api/product/${id}/`);
         if (!response.ok) throw new Error('فشل في تحميل بيانات المنتج');
         const data = await response.json();
         setProduct(data);
@@ -37,7 +37,7 @@ function ProductDetails() {
   const handleDelete = async () => {
     if (window.confirm('هل أنت متأكد من حذف هذا المنتج؟')) {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/delete-product/${id}/`, {
+        const response = await fetch(`https://usdeshopbackeand-1.onrender.com/api/delete-product/${id}/`, {
           method: 'DELETE',
         });
         
