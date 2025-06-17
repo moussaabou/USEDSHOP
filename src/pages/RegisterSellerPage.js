@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaUser, FaEnvelope, FaPhone, FaMapMarkerAlt, FaCalendarAlt, FaLock, FaImage } from 'react-icons/fa';
 import './RegisterSellerPage.css';
-console.log("API URL:", process.env.REACT_APP_API_URL);
 function RegisterSellerPage() {
   const navigate = useNavigate();
   const [form, setForm] = useState({
@@ -44,7 +43,7 @@ function RegisterSellerPage() {
     }
 
   const baseUrl = process.env.REACT_APP_API_URL.replace(/\/$/, '');  // يزيل / إن وجدت
-  fetch(`${baseUrl}/api/register-seller/`, {
+  fetch(`https://usdeshopbackeand-1.onrender.com/api/register-seller/`, {
   method: 'POST',
   body: formData,
 })
