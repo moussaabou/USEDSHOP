@@ -45,7 +45,7 @@ function AddProductPage() {
     formData.append('seller_id', sellerId);
     images.forEach((img, i) => img && formData.append(`image${i + 1}`, img));
 
-    fetch('${process.env.REACT_APP_API_URL}/api/add-product/', {
+    fetch(`https://usdeshopbackeand-1.onrender.com/api/add-product/`, {
       method: 'POST',
       body: formData,
     })
