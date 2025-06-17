@@ -18,7 +18,7 @@ function AdminPage() {
   const fetchSellers = () => {
     setLoading(true);
     setError(null); // إفراغ أي أخطاء سابقة
-    fetch('http://localhost:8000/api/sellers/')
+    fetch('${process.env.REACT_APP_API_URL}/api/sellers/')
       .then(res => {
         if (!res.ok) throw new Error('فشل في جلب البائعين');
         return res.json();

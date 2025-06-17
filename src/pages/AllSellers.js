@@ -16,7 +16,7 @@ const AllSellers = () => {
   const fetchSellers = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('/api/sellers');
+      const response = await axios.get('${process.env.REACT_APP_API_URL}/api/sellers');
       setSellers(response.data);
       setError(null);
     } catch (err) {

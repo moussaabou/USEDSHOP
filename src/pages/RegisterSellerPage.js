@@ -43,7 +43,7 @@ function RegisterSellerPage() {
       formData.append(key, form[key]);
     }
 
-    fetch('/api/register-seller/', {
+    fetch('${process.env.REACT_APP_API_URL}/api/register-seller/', {
       method: 'POST',
       body: formData,
     })

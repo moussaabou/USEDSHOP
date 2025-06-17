@@ -14,7 +14,7 @@ function SellerProductsPage() {
 
   useEffect(() => {
     // جلب بيانات البائع والمنتجات
-    fetch(`/api/get-seller-products/${sellerId}/`)
+    fetch(`${process.env.REACT_APP_API_URL}/api/get-seller-products/${sellerId}/`)
       .then((res) => res.json())
       .then((data) => {
         setProducts(data.products || []);

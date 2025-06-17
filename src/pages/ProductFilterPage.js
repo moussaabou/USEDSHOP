@@ -15,7 +15,7 @@ const ProductFilterPage = () => {
   // جلب المنتجات مع الفلاتر
   useEffect(() => {
     setLoading(true);
-    let url = '/api/filter-products/?';
+    let url = '${process.env.REACT_APP_API_URL}/api/filter-products/?';
 
     if (category) url += `category=${encodeURIComponent(category)}&`;
     if (minPrice) url += `min_price=${minPrice}&`;

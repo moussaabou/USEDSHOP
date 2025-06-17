@@ -14,7 +14,7 @@ const ProductFilterPage = () => {
 
   useEffect(() => {
     setLoading(true);
-    let url = '/api/filter-products/?';
+    let url = '${process.env.REACT_APP_API_URL}/api/filter-products/?';
 
     if (category) url += `category=${encodeURIComponent(category)}&`;
     // ملاحظة: حسب ما تفضلت، هذه الفلاتر لن ترسل minPrice و maxPrice و sortPrice للسيرفر
