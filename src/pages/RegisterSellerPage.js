@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaUser, FaEnvelope, FaPhone, FaMapMarkerAlt, FaCalendarAlt, FaLock, FaImage } from 'react-icons/fa';
 import './RegisterSellerPage.css';
-
+console.log("API URL:", process.env.REACT_APP_API_URL);
 function RegisterSellerPage() {
   const navigate = useNavigate();
   const [form, setForm] = useState({
