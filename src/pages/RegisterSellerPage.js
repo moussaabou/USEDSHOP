@@ -43,10 +43,11 @@ function RegisterSellerPage() {
       formData.append(key, form[key]);
     }
 
-    fetch(`${process.env.REACT_APP_API_URL}api/register-seller/`, {
-      method: 'POST',
-      body: formData,
-    })
+  const baseUrl = process.env.REACT_APP_API_URL.replace(/\/$/, '');  // يزيل / إن وجدت
+  fetch(`${baseUrl}/api/register-seller/`, {
+  method: 'POST',
+  body: formData,
+})
       .then((res) => {
         if (!res.ok) throw new Error('فشل في التسجيل');
         return res.json();
