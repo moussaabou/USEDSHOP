@@ -25,7 +25,7 @@ function SellerPage() {
 
   const fetchProducts = async (userId) => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/seller-products/${userId}/`);
+      const response = await fetch(`https://usdeshopbackeand-1.onrender.com/api/seller-products/${userId}/`);
       if (!response.ok) throw new Error('فشل في جلب المنتجات');
       const data = await response.json();
       setProducts(data);
