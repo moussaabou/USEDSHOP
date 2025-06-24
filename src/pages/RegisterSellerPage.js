@@ -97,7 +97,7 @@ function RegisterSellerPage({ language }) {
       formData.append(key, form[key]);
     }
 
-    fetch('/api/register-seller/', {
+    fetch('https://usdeshopbackeand-1.onrender.com/api/register-seller/', {
       method: 'POST',
       body: formData,
     })
