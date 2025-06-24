@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaUser, FaEnvelope, FaPhone, FaMapMarkerAlt, FaCalendarAlt, FaLock, FaImage } from 'react-icons/fa';
 import './RegisterSellerPage.css';
-function RegisterSellerPage() {
+
+function RegisterSellerPage({ language }) {
   const navigate = useNavigate();
   const [form, setForm] = useState({
     name: '',
@@ -16,6 +17,60 @@ function RegisterSellerPage() {
   });
 
   const [previewImage, setPreviewImage] = useState(null);
+
+  // كائن الترجمة
+  const translations = {
+    ar: {
+      pageTitle: 'تسجيل بائع جديد',
+      name: 'الاسم',
+      surname: 'اللقب',
+      phone_number: 'رقم الهاتف',
+      email: 'البريد الإلكتروني',
+      address: 'الولاية',
+      selectWilaya: 'اختر الولاية',
+      birth_date: 'تاريخ الميلاد',
+      password: 'كلمة المرور',
+      profile_picture: 'صورة البروفايل',
+      register: 'تسجيل',
+    },
+    fr: {
+      pageTitle: 'Inscription Nouveau Vendeur',
+      name: 'Prénom',
+      surname: 'Nom',
+      phone_number: 'Téléphone',
+      email: 'E-mail',
+      address: 'Wilaya',
+      selectWilaya: 'Choisir la wilaya',
+      birth_date: 'Date de naissance',
+      password: 'Mot de passe',
+      profile_picture: 'Photo de profil',
+      register: "S'inscrire",
+    },
+    en: {
+      pageTitle: 'Register New Seller',
+      name: 'First Name',
+      surname: 'Last Name',
+      phone_number: 'Phone Number',
+      email: 'Email',
+      address: 'Wilaya',
+      selectWilaya: 'Select wilaya',
+      birth_date: 'Birth Date',
+      password: 'Password',
+      profile_picture: 'Profile Picture',
+      register: 'Register',
+    },
+  };
+  const t = translations[language];
+
+  // قائمة ولايات الجزائر
+  const wilayas = [
+    'أدرار', 'الشلف', 'الأغواط', 'أم البواقي', 'باتنة', 'بجاية', 'بسكرة', 'بشار', 'البليدة', 'البويرة',
+    'تمنراست', 'تبسة', 'تلمسان', 'تيارت', 'تيزي وزو', 'الجزائر', 'الجلفة', 'جيجل', 'سطيف', 'سعيدة',
+    'سكيكدة', 'سيدي بلعباس', 'عنابة', 'قالمة', 'قسنطينة', 'المدية', 'مستغانم', 'المسيلة', 'معسكر', 'ورقلة',
+    'وهران', 'البيض', 'إليزي', 'برج بوعريريج', 'بومرداس', 'الطارف', 'تندوف', 'تيسمسيلت', 'الوادي', 'خنشلة',
+    'سوق أهراس', 'تيبازة', 'ميلة', 'عين الدفلى', 'النعامة', 'عين تموشنت', 'غرداية', 'غليزان', 'تميمون', 'برج باجي مختار',
+    'أولاد جلال', 'بني عباس', 'عين صالح', 'عين قزام', 'تقرت', 'جانت', 'المغير', 'المنيعة'
+  ];
 
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
@@ -42,10 +97,10 @@ function RegisterSellerPage() {
       formData.append(key, form[key]);
     }
 
-  fetch(`https://usdeshopbackeand-1.onrender.com/api/register-seller/`, {
-  method: 'POST',
-  body: formData,
-})
+    fetch('/api/register-seller/', {
+      method: 'POST',
+      body: formData,
+    })
       .then((res) => {
         if (!res.ok) throw new Error('فشل في التسجيل');
         return res.json();
@@ -67,7 +122,7 @@ function RegisterSellerPage() {
       <input
         type={type}
         name={field}
-        placeholder={field.replace('_', ' ')}
+        placeholder={t[field]}
         value={form[field]}
         onChange={handleChange}
         required
@@ -77,17 +132,37 @@ function RegisterSellerPage() {
 
   return (
     <div className="register-container">
-      <h2>تسجيل بائع جديد</h2>
+      <h2>{t.pageTitle}</h2>
       <form onSubmit={handleSubmit}>
         {renderInput('name', <FaUser />)}
         {renderInput('surname', <FaUser />)}
         {renderInput('phone_number', <FaPhone />)}
         {renderInput('email', <FaEnvelope />, 'email')}
-        {renderInput('address', <FaMapMarkerAlt />)}
+        {/* حقل الولاية مع label وتنسيق */}
+        <div className="input-group">
+          <label htmlFor="address" className="input-label">{t.address}</label>
+          <div className="input-icon">
+            <FaMapMarkerAlt />
+          </div>
+          <select
+            id="address"
+            name="address"
+            value={form.address}
+            onChange={handleChange}
+            required
+            className="wilaya-select"
+          >
+            <option value="">{t.selectWilaya}</option>
+            {wilayas.map((wilaya, idx) => (
+              <option key={idx} value={wilaya}>{wilaya}</option>
+            ))}
+          </select>
+        </div>
         {renderInput('birth_date', <FaCalendarAlt />, 'date')}
         {renderInput('password', <FaLock />, 'password')}
-        
+        {/* صورة البروفايل */}
         <div className="file-input-group">
+          <label className="input-label">{t.profile_picture}</label>
           <div className="input-icon">
             <FaImage />
           </div>
@@ -104,8 +179,7 @@ function RegisterSellerPage() {
             </div>
           )}
         </div>
-        
-        <button type="submit">تسجيل</button>
+        <button type="submit">{t.register}</button>
       </form>
     </div>
   );
