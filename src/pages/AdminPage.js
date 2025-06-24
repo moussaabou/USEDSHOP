@@ -19,7 +19,7 @@ export default function AdminPage({ language = 'ar' }) {
 
   const translations = {
     ar: {
-      adminPanel: 'لوحة تحكم الأدمن',
+      adminPanel: '....لوحة تحكم الأدمن',
       stats: 'إحصائيات',
       sellers: 'البائعين',
       products: 'المنتجات',
