@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './AdminPage.css';
 import { FaUsers, FaBoxOpen, FaUserShield, FaStore, FaCubes, FaEye, FaTrash } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 export default function AdminPage({ language = 'ar' }) {
   const [sellers, setSellers] = useState([]);
@@ -42,9 +42,55 @@ export default function AdminPage({ language = 'ar' }) {
       sellerName: 'اسم البائع',
       goToProducts: 'منتجات البائع',
     },
-    // يمكنك إبقاء باقي الترجمات كما هي...
+    en: {
+      adminPanel: 'Admin Dashboard',
+      stats: 'Statistics',
+      sellers: 'Sellers',
+      products: 'Products',
+      totalSellers: 'Total Sellers',
+      totalProducts: 'Total Products',
+      viewSellers: 'View Sellers',
+      viewProducts: 'View Products',
+      loading: 'Loading...',
+      error: 'Error:',
+      delete: 'Delete',
+      view: 'View',
+      confirmDeleteSeller: 'Are you sure you want to delete this seller and all their products?',
+      deleted: 'Seller and all their products deleted.',
+      deleteError: 'Error occurred while deleting.',
+      seller: 'Seller',
+      email: 'Email',
+      product: 'Product',
+      price: 'Price',
+      category: 'Category',
+      sellerName: 'Seller Name',
+      goToProducts: 'Seller Products',
+    },
+    fr: {
+      adminPanel: 'Tableau de bord Admin',
+      stats: 'Statistiques',
+      sellers: 'Vendeurs',
+      products: 'Produits',
+      totalSellers: 'Nombre de vendeurs',
+      totalProducts: 'Nombre de produits',
+      viewSellers: 'Voir les vendeurs',
+      viewProducts: 'Voir les produits',
+      loading: 'Chargement...',
+      error: 'Erreur :',
+      delete: 'Supprimer',
+      view: 'Voir',
+      confirmDeleteSeller: 'Êtes-vous sûr de vouloir supprimer ce vendeur et tous ses produits ?',
+      deleted: 'Vendeur et tous ses produits supprimés.',
+      deleteError: 'Erreur lors de la suppression.',
+      seller: 'Vendeur',
+      email: 'Email',
+      product: 'Produit',
+      price: 'Prix',
+      category: 'Catégorie',
+      sellerName: 'Nom du vendeur',
+      goToProducts: 'Produits du vendeur',
+    },
   };
-
   const t = translations[language] || translations['ar'];
 
   useEffect(() => {
@@ -77,13 +123,13 @@ export default function AdminPage({ language = 'ar' }) {
         .then(res => {
           if (res.ok) {
             setSellers(prev => prev.filter(s => s.id !== sellerId));
-            alert('تم حذف البائع مباشرة');
+            alert(t.deleted);
           } else {
-            alert('فشل الحذف المباشر');
+            alert(t.deleteError);
           }
         })
         .catch(() => {
-          alert('فشل الاتصال بالخادم');
+          alert(t.deleteError);
         });
     }
   };
