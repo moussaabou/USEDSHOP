@@ -142,7 +142,7 @@ export default function AdminPage({ language = 'ar' }) {
     window.open(`/seller-profile-page/${sellerId}`, '_blank');
   };
   const handleSellerProducts = (sellerId) => {
-    window.open(`http://localhost:3000/seller-products/${sellerId}`, '_blank');
+    window.open(`/seller-products/${sellerId}`, '_blank');
   };
   const handleViewProduct = (productId) => {
     window.open(`/product/${productId}`, '_blank');
